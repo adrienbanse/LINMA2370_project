@@ -12,7 +12,7 @@ import EoN
 import matplotlib.pyplot as plt
 
 ### Load Network from edge list
-filename = 'network1.dat'           # Change the filename to try other networks
+filename = 'network3.dat'           # Change the filename to try other networks
 print('Loading data ...')
 G = nx.read_adjlist(filename)       # Networkx Graph object
 A = nx.adjacency_matrix(G)          # Provides the adjacency matrix of the network
