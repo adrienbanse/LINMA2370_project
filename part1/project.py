@@ -190,19 +190,3 @@ beta = np.array([[60/365,60/365,60/365],
 print('Q8 : Simulation 3')
 T,Y = epidemic2(N,mu,beta,gamma,Tend,x0)
 plot_epidemic2(T,Y,N)
-
-
-
-
-
-
-# plt.figure(3)
-# plt.plot(Y[:,0], Y[:,1])
-#
-# plt.show()
-
-# R0 = beta/(gamma+mu)
-# S = N/R0 ; I = mu*N/beta*(R0-1) ; R = gamma*N/beta*(R0-1)
-
-# print(R0)
-# print(S/N) ; print(I/N) ; print(R/N)
