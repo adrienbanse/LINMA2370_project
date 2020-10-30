@@ -164,28 +164,26 @@ plot_planar(Y[:,0],Y[:,1],N,True)
 N = 1e7
 mu = 1/(80*365)
 gamma = 23/365
-Tend = 36500*3
+Tend = 36500
 x0 = [3/20 *(N-10),3/5 *(N-10),1/4 *(N-10),3/2,6,5/2,0,0,0]
-
-beta = np.array([[60/365,0/365,0/365],
-                 [0/365,60/365,0/365],
-                 [0/365,0/365,60/365]])
-
-print('Q8 : Simulation 1')
-T,Y = epidemic2(N,mu,beta,gamma,Tend,x0)
-plot_epidemic2(T,Y,N)
 
 beta = np.array([[60/365,60/365,60/365],
                  [60/365,60/365,60/365],
                  [60/365,60/365,60/365]])
 
+print('Q8 : Simulation 1')
+T,Y = epidemic2(N,mu,beta,gamma,Tend,x0)
+plot_epidemic2(T,Y,N)
+
+mu = 1/(20*365)
 print('Q8 : Simulation 2')
 T,Y = epidemic2(N,mu,beta,gamma,Tend,x0)
 plot_epidemic2(T,Y,N)
 
+mu = 1/(80*365)
 beta = np.array([[60/365,60/365,60/365],
-                 [0/365,60/365,60/365],
-                 [0/365,0/365,60/365]])
+                 [ 0/365,60/365,60/365],
+                 [ 0/365, 0/365,60/365]])
 
 print('Q8 : Simulation 3')
 T,Y = epidemic2(N,mu,beta,gamma,Tend,x0)
