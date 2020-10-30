@@ -5,51 +5,55 @@ Epidemics on Networks
 Author : Benjamin Chiem (benjamin.chiem@uclouvain.be)
 Year   : 2020
 """
-
+import matplotlib
 import numpy as np
 import networkx as nx
 import EoN
 import matplotlib.pyplot as plt
+from matplotlib import cm
 
 ### Load Network from edge list
-filename = 'network4.dat'           # Change the filename to try other networks
+filename = 'network_pers.dat'           # Change the filename to try other networks
 print('Loading data ...')
 G = nx.read_adjlist(filename)       # Networkx Graph object
 A = nx.adjacency_matrix(G)          # Provides the adjacency matrix of the network
 A = A.todense()                     # From sparse to dense matrix for manipulation
 print('Data loaded ! ')
 
-# nx.draw(G,node_size=30)
-# plt.show()
 
-### Different visualizations of the graph
-#   Feel free to (un)comment the steps that you don't need
 
-# # 1) Visualize the network conveniently
-# if filename is 'network2.dat' or filename is 'network3.dat':
-#     print('Preparing network visualization ...')
-#     pos = nx.spring_layout(G)
-#     nx.draw(G,pos=pos)
-#     plt.title('Network')
-#     plt.show()
-# else: # For some networks, this visualization might be too heavy for your computer
-#     print('Network visualization skipped (too heavy for this network).')
+## Different visualizations of the graph
 
-# # 2) Visualize the adjacency matrix
-# print('Preparing adjacency matrix visualization ...')
-# plt.matshow(A)
-# plt.title('Adjacency matrix')
-# plt.show()
+# 1) Visualize the network conveniently
+if filename is 'network2.dat' or filename is 'network3.dat':
+    print('Preparing network visualization ...')
+    pos = nx.spring_layout(G)
+    nx.draw(G,pos=pos)
+    plt.title('Network')
+    plt.show()
+elif filename is 'network_pers.dat':
+    print('Preparing network visualization ...')
+    shells = []
+    degree = np.array([val for (node, val) in G.degree()])
+    nodes = np.array(G.nodes())
+    for i in range(int(np.max(degree)), -1, -1):
+        shells.append(list(nodes[degree == i]))
+    pos = nx.shell_layout(G, shells)
+    cmap = cm.gist_rainbow
+    nx.draw(G, pos, edge_color='grey', width=0.5, node_color=degree, node_size=10, cmap=cmap)
+    sm = plt.cm.ScalarMappable(cmap=cmap,
+                               norm=matplotlib.colors.Normalize(vmin=np.min(degree) - 1, vmax=np.max(degree)))
+    plt.colorbar(sm, shrink=0.9)
+    plt.show()
+else: # For some networks, this visualization might be too heavy for your computer
+    print('Network visualization skipped (too heavy for this network).')
 
-# # 3) Visualize the degree distribution
-# print('Preparing degree distribution visualization ...')
-# D = np.sum(A,1) # Sum over columns to get the degree of each node
-# plt.figure()
-# plt.title('Degree distribution')
-# plt.hist(D,bins=30)
-# plt.xlabel('Degree')
-# plt.ylabel('Occurences (nodes)')
-# plt.show()
+# 2) Visualize the adjacency matrix
+print('Preparing adjacency matrix visualization ...')
+plt.matshow(A)
+plt.title('Adjacency matrix')
+plt.show()
+
 
 ### Run stochastic simulations
 #   Try with the provided parameters first
