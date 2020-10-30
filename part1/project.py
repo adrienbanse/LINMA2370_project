@@ -44,8 +44,8 @@ plt.legend()
 plt.figure(2)
 plt.plot(Y[:,0], Y[:,1])  
 
-# R0 = beta/(gamma+mu)
-# S = N/R0 ; I = mu*N/beta*(R0-1) ; R = gamma*N/beta*(R0-1)
+R0 = beta/(gamma+mu)
+S = N/R0 ; I = mu*N/beta*(R0-1) ; R = gamma*N/beta*(R0-1)
 
-# print(R0)
-# print(S/N) ; print(I/N) ; print(R/N)
+print(R0)
+print(S/N) ; print(I/N) ; print(R/N)

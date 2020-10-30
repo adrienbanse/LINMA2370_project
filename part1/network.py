@@ -78,13 +78,6 @@ A[np.arange(403,800,4),np.arange(800,999,2)] = 1
 # diagonal --> zero
 A[np.arange(N),np.arange(N)] = 0
 
-plt.figure()
-plt.matshow(A)
-plt.show()
-
-plt.figure()
 G = nx.from_numpy_matrix(A)
-nx.draw(G)
-plt.show()
-
+nx.write_adjlist(G,"network_pers.dat")
     
