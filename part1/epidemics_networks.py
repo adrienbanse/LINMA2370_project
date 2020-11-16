@@ -13,7 +13,7 @@ import matplotlib.pyplot as plt
 from matplotlib import cm
 
 ### Load Network from edge list
-filename = 'network_pers.dat'           # Change the filename to try other networks
+filename = 'network2.dat'           # Change the filename to try other networks
 print('Loading data ...')
 G = nx.read_adjlist(filename)       # Networkx Graph object
 A = nx.adjacency_matrix(G)          # Provides the adjacency matrix of the network
